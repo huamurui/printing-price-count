@@ -40,23 +40,46 @@
 
   <hr>
 
+
   <fieldset>
     <legend>封面-纸质:</legend>    
     <div>
       <input type="radio" id="pageTypePic2" name="pageTypePic" value="pageTypePic2">
-      <label for="pageTypePic2">皮纹纸 3毛/张</label>
+      <label for="pageTypePic2">皮纹纸 3毛/张（每本书需一张）</label>
     </div>
     <div>
       <input type="radio" id="pageTypePic1" name="pageTypePic" value="pageTypePic1">
-      <label for="pageTypePic1">铜版纸 4毛/张</label>
+      <label for="pageTypePic1">铜版纸 4毛/张（每本书需一张）</label>
     </div>
     <div>
       <label for="pageCountPic">张数:</label>
       <input type="text" id="pageCountPic" name="pageCountPic" value="">
     </div>
   </fieldset>
+  <div>
+    <p>封面花费：<span class="picPrice">0</span>元</p>
+  </div>
+  <hr>
 
+  <div>
+    <button onclick="addBookNum()">+</button>
+    <div id="shopInfoOfBook">装订数量:<span class="bookNum">1</span>本</div>
+    <button  onclick="subBookNum()" flag="-1">-</button>
+  </div>
 
+  <script>
+    let bookNum = document.querySelector('.bookNum');
+    const addBookNum = () => {
+      let bookNumValue = parseInt(bookNum.innerText);
+      bookNum.innerText = bookNumValue + 1;
+    }
+    const subBookNum = () => {
+      let bookNumValue = parseInt(bookNum.innerText);
+      if (bookNumValue > 1) {
+        bookNum.innerText = bookNumValue - 1;
+      }
+    }
+  </script>
   <fieldset>
     <legend>封面-设计:</legend>
     <div>
@@ -106,6 +129,7 @@
   </fieldset>
 
   <div class="shopInfoOfBinding">
+    <p>装订单价(每本）：<span class="oneBindingPrice">0</span>元</p>
     <p>封面及装订花费：<span class="totalBindingPrice">0</span>元</p>
   </div>
   
@@ -134,6 +158,9 @@
   let totalNum = document.querySelector('.totalNum');
   let totalNum002 = document.querySelector('.totalNum002');
   
+
+  let picPrice = document.querySelector('.picPrice');
+  let oneBindingPrice = document.querySelector('.oneBindingPrice');
   let totalPagePrice = document.querySelector('.totalPagePrice');
   let totalBindingPrice = document.querySelector('.totalBindingPrice');
   let totalPrice = document.querySelector('.totalPrice');
@@ -201,10 +228,19 @@
           xianZhuangPrice = 10;
       }
   
-      totalBindingPrice.innerHTML = picDesignPrice + bookbindingPrice + fuMoPrice + yaHenPrice + xianZhuangPrice + pageTypePicPrice * pageCountPic.value;
-  
-      totalPrice.innerHTML = pageCountPrice + pageCountPicPrice + picDesignPrice + bookbindingPrice + fuMoPrice + yaHenPrice + xianZhuangPrice + pageTypePicPrice * pageCountPic.value;
-  }
+      picPrice.innerHTML = pageCountPic.value * pageTypePicPrice;
+
+
+      OneBindingPrice = bookbindingPrice + fuMoPrice + yaHenPrice  + picDesignPrice + xianZhuangPrice;
+      
+      
+      oneBindingPrice.innerHTML = OneBindingPrice;
+      totalBindingPrice.innerHTML = OneBindingPrice * parseInt(bookNum.innerText) + parseFloat(picPrice.innerHTML)   ;
+
+
+      totalPrice.innerHTML = parseFloat(pageCountPrice) + parseFloat(totalBindingPrice.innerHTML) ;
+ 
+    }
 
   const reset = ()  => {
     for (let i = 0; i < pageType.length; i++) {
@@ -230,6 +266,8 @@
     totalBindingPrice.innerHTML = 0;
     totalPrice.innerHTML = 0;
     picDesign22.value = 0;
+
+    bookNum.innerHTML = 1;
   }
   
   </script>
