@@ -23,44 +23,36 @@
   <fieldset>
     <legend>内页:</legend>
     <div>
-      <input type="radio" id="pageType" name="pageType" value="pageType"
-              checked>
+      <input type="radio" id="pageType" name="pageType" value="pageType"checked>
       <label for="pageType">A5 80g 黑白道林纸 1毛/张（双面）</label>
     </div>
     <div>
       <label for="pageCount">页数:</label>
-      <input type="text" id="pageCount" name="pageCount" value=""
-              >
+      <input type="text" id="pageCount" name="pageCount" value="">
     </div>
   </fieldset>
 
 
   <div class="shopInfoOfPage">
-    <p>内页：<span class="totalNum">0</span> 页</p>
+    <p>内页：<span class="totalNum">0</span> 页, (即<span class="totalNum002">0</span> 张)  </p>
     <p>内页花费：<span class="totalPagePrice">0</span>元</p>
   </div>
 
-           <hr>
+  <hr>
 
   <fieldset>
-    <legend>封面-纸质:</legend>
-
+    <legend>封面-纸质:</legend>    
     <div>
-      <input type="radio" id="pageTypePic1" name="pageTypePic" value="pageTypePic1"
-        >
-      <label for="pageTypePic1">铜版纸 4毛/张</label>
-    </div>
-
-    <div>
-      <input type="radio" id="pageTypePic2" name="pageTypePic" value="pageTypePic2"
-      >
+      <input type="radio" id="pageTypePic2" name="pageTypePic" value="pageTypePic2">
       <label for="pageTypePic2">皮纹纸 3毛/张</label>
     </div>
-
     <div>
-      <label for="pageCountPic">页数:</label>
-      <input type="text" id="pageCountPic" name="pageCountPic" value=""
-              >
+      <input type="radio" id="pageTypePic1" name="pageTypePic" value="pageTypePic1">
+      <label for="pageTypePic1">铜版纸 4毛/张</label>
+    </div>
+    <div>
+      <label for="pageCountPic">张数:</label>
+      <input type="text" id="pageCountPic" name="pageCountPic" value="">
     </div>
   </fieldset>
 
@@ -78,7 +70,6 @@
     <div>
       <input type="radio" id="picDesign21" name="picDesign" value="picDesign21">
       <label for="picDesign21">其他</label>
-
     </div>
     <div>
       <label for="picDesign22">其他 x 元/本(选中“其他”) </label>
@@ -88,15 +79,12 @@
                 
   <fieldset>
     <legend>装订:</legend>
-
     <div>
-      <input type="radio" id="bookbinding0" name="bookbinding"  value="bookbinding0"
-              >
+      <input type="radio" id="bookbinding0" name="bookbinding"  value="bookbinding0">
       <label for="bookbinding0">皮纹纸胶装3元/本</label>
     </div>
     <div>
-      <input type="radio" id="bookbinding1" name="bookbinding" value="bookbinding1"
-              >
+      <input type="radio" id="bookbinding1" name="bookbinding" value="bookbinding1">
       <label for="bookbinding1">铜版纸胶装 5元/本</label>
     </div>
   </fieldset>
@@ -104,18 +92,15 @@
   <fieldset>
     <legend>装订-可选:</legend>
     <div>
-      <input type="checkbox" id="fuMo" name="fuMo" 
-              >
+      <input type="checkbox" id="fuMo" name="fuMo" >
       <label for="fuMo">覆膜+2元</label>
     </div>
     <div>
-      <input type="checkbox" id="yaHen" name="yaHen"
-              >
+      <input type="checkbox" id="yaHen" name="yaHen">
       <label for="yaHen">压痕(免费)</label>
     </div>
     <div>
-      <input type="checkbox" id="xianZhuang" name="xianZhuang"
-              >
+      <input type="checkbox" id="xianZhuang" name="xianZhuang">
       <label for="xianZhuang">古书线装 10元/本（试上线）</label>
     </div>
   </fieldset>
@@ -130,13 +115,11 @@
     <p>总计花费：<span class="totalPrice">0</span>元</p>
   </div>
 
-<hr><hr>
+  <hr><hr>
 
   <button type="button" style="font-weight: 800;"  onclick="getPrice()">计算价格</button>
   <button type="button" style="font-weight: 800;"  onclick="reset()">重置</button>
 
-
-  
 <script>
   let pageType = document.getElementsByName('pageType');
   let pageCount = document.getElementById('pageCount');
@@ -149,6 +132,8 @@
   let xianZhuang = document.getElementById('xianZhuang');
   
   let totalNum = document.querySelector('.totalNum');
+  let totalNum002 = document.querySelector('.totalNum002');
+  
   let totalPagePrice = document.querySelector('.totalPagePrice');
   let totalBindingPrice = document.querySelector('.totalBindingPrice');
   let totalPrice = document.querySelector('.totalPrice');
@@ -171,6 +156,7 @@
       }
       pageCountPrice = pageCount.value * pageTypePrice / 2;
       totalNum.innerHTML = pageCount.value;
+      totalNum002.innerHTML = (pageCount.value / 2);
       totalPagePrice.innerHTML = pageCountPrice;
   
   
@@ -239,6 +225,7 @@
     yaHen.checked = false;
     xianZhuang.checked = false;
     totalNum.innerHTML = 0;
+    totalNum002.innerHTML = 0;
     totalPagePrice.innerHTML = 0;
     totalBindingPrice.innerHTML = 0;
     totalPrice.innerHTML = 0;
