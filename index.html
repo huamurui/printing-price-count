@@ -68,14 +68,21 @@
   <fieldset>
     <legend>封面-设计:</legend>
     <div>
-      <input type="radio" id="picDesign0" name="picDesign" value="picDesign0"
-              >
-      <label for="picDesign0">店内模板 5元/本 </label>
+      <input type="radio" id="picDesign0" name="picDesign" value="picDesign0">
+      <label for="picDesign0">店内模板 2 元/本 </label>
     </div>
     <div>
-      <input type="radio" id="picDesign1" name="picDesign" value="picDesign1"
-              >
+      <input type="radio" id="picDesign1" name="picDesign" value="picDesign1">
       <label for="picDesign1">设计师定制 50-100元/本 (此处计算以50计) </label>
+    </div>
+    <div>
+      <input type="radio" id="picDesign21" name="picDesign" value="picDesign21">
+      <label for="picDesign21">其他</label>
+
+    </div>
+    <div>
+      <label for="picDesign22">其他设计 x 元/本 </label>
+      <input type="text" id="picDesign22" name="picDesign" value="">
     </div>
   </fieldset>
                 
@@ -119,13 +126,13 @@
   
   <hr>
 
-  <div class="shopInfo">
+  <div class="shopInfo" style="font-weight: 800;">
     <p>总计花费：<span class="totalPrice">0</span>元</p>
   </div>
 
 <hr><hr>
 
-  <button type="button" onclick="getPrice()">计算价格</button>
+  <button type="button" style="font-weight: 800;"  onclick="getPrice()">计算价格</button>
 
 
   
@@ -178,9 +185,11 @@
       for (let i = 0; i < picDesign.length; i++) {
           if (picDesign[i].checked) {
             if(picDesign[i].value == 'picDesign0')
-              picDesignPrice = 5;
+              picDesignPrice = 2;
             else if(picDesign[i].value == 'picDesign1')
               picDesignPrice = 50;
+            else if(picDesign[i].value == 'picDesign21')
+              picDesignPrice = parseInt(picDesign22.value);
           }
       }
   
