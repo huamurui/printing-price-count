@@ -81,8 +81,8 @@
 
     </div>
     <div>
-      <label for="picDesign22">其他设计 x 元/本 </label>
-      <input type="text" id="picDesign22" name="picDesign" value="">
+      <label for="picDesign22">其他 x 元/本(选中“其他”) </label>
+      <input type="text" id="picDesign22" name="picDesign" value="0">
     </div>
   </fieldset>
                 
@@ -133,6 +133,7 @@
 <hr><hr>
 
   <button type="button" style="font-weight: 800;"  onclick="getPrice()">计算价格</button>
+  <button type="button" style="font-weight: 800;"  onclick="reset()">重置</button>
 
 
   
@@ -217,6 +218,31 @@
       totalBindingPrice.innerHTML = picDesignPrice + bookbindingPrice + fuMoPrice + yaHenPrice + xianZhuangPrice + pageTypePicPrice * pageCountPic.value;
   
       totalPrice.innerHTML = pageCountPrice + pageCountPicPrice + picDesignPrice + bookbindingPrice + fuMoPrice + yaHenPrice + xianZhuangPrice + pageTypePicPrice * pageCountPic.value;
+  }
+
+  const reset = ()  => {
+    for (let i = 0; i < pageType.length; i++) {
+      pageType[i].checked = false;
+    }
+    pageCount.value = 0;
+    for (let i = 0; i < pageTypePic.length; i++) {
+      pageTypePic[i].checked = false;
+    }
+    pageCountPic.value = 0;
+    for (let i = 0; i < picDesign.length; i++) {
+      picDesign[i].checked = false;
+    }
+    for (let i = 0; i < bookbinding.length; i++) {
+      bookbinding[i].checked = false;
+    }
+    fuMo.checked = false;
+    yaHen.checked = false;
+    xianZhuang.checked = false;
+    totalNum.innerHTML = 0;
+    totalPagePrice.innerHTML = 0;
+    totalBindingPrice.innerHTML = 0;
+    totalPrice.innerHTML = 0;
+    picDesign22.value = 0;
   }
   
   </script>
